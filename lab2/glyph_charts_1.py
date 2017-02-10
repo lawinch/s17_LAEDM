@@ -18,18 +18,18 @@ wedges = []
 circles = []
 
 for x in np.arange(0, 3.3, .3):
-for y in np.arange(0, 3.3, .3):
-   theta, phi = np.random.random(2)  # functions of (x,y) in reality
-   for v in (0, pi):
-       wedges.append(Wedge((x, y),
-                       .15,
-                       degrees(v - phi - theta/2),
-                       degrees(v - phi + theta/2),
-                       edgecolor='none'),
-                       )
-   circles.append(Circle((x, y),
-                        .15,
-                        edgecolor='none'))
+    for y in np.arange(0, 3.3, .3):
+       theta, phi = np.random.random(2)  # functions of (x,y) in reality
+       for v in (0, pi):
+           wedges.append(Wedge((x, y),
+                           .15,
+                           degrees(v - phi - theta/2),
+                           degrees(v - phi + theta/2),
+                           edgecolor='none'),
+                           )
+       circles.append(Circle((x, y),
+                            .15,
+                            edgecolor='none'))
 
 
 colors = np.linspace(0, 1, len(circles))  # function of (x,y) in reality
