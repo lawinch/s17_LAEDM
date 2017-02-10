@@ -13,22 +13,22 @@ import numpy as np
 
 def contour_map(projection, lat_0, lon_0, resolution, lats, lons, wave, mean):
 
-map = bm.Basemap(projection = projection, lat_0 = lat_0, lon_0 = lon_0, resolution = resolution)
-#coastlines and countries
-map.drawcoastlines(linewidth = 0.25)
-map.drawcountries(linewidth = 0.25)
-map.fillcontinents(color='coral',lake_color='aqua')
-#edges of map projections
-map.drawmapboundary(fill_color='aqua')
-#lines
-map.drawmeridians(np.arange(0, 360, 30))
-map.drawparallels(np.arange(-90, 90, 30))
+    map = bm.Basemap(projection = projection, lat_0 = lat_0, lon_0 = lon_0, resolution = resolution)
+    #coastlines and countries
+    map.drawcoastlines(linewidth = 0.25)
+    map.drawcountries(linewidth = 0.25)
+    map.fillcontinents(color='coral',lake_color='aqua')
+    #edges of map projections
+    map.drawmapboundary(fill_color='aqua')
+    #lines
+    map.drawmeridians(np.arange(0, 360, 30))
+    map.drawparallels(np.arange(-90, 90, 30))
 
-x, y = map(lons *180./np.pi, lats*180./np.pi)
-#contours
-map.contour(x, y, wave + mean, 15 ,linewidths=1.5)
+    x, y = map(lons *180./np.pi, lats*180./np.pi)
+    #contours
+    map.contour(x, y, wave + mean, 15 ,linewidths=1.5)
 
-return plt
+    return plt
 
 #data
 nlats = 73; nlons = 145; delta = 2.*np.pi/(nlons-1)
