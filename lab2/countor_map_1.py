@@ -23,13 +23,14 @@ Z2 = mlab.bivariate_normal(X, Y, 1.5, 0.5, 1, 1)
 # difference of Gaussians
 Z = 10.0 * (Z2 - Z1)
 
+
 def countor_map(X, Y, Z):
-   plt.figure()
-   CS = plt.contour(X, Y, Z)
-   plt.clabel(CS, inline=1, fontsize=10)
-   plt.title('Countor map diagram')
+    plt.figure()
+    CS = plt.contour(X, Y, Z)
+    plt.clabel(CS, inline=1, fontsize=10)
+    plt.title('Countor map diagram')
 
-   plt.show()
+    plt.show()
 
-   
-countor_map(X, Y,Z)
+
+countor_map(X, Y, Z)

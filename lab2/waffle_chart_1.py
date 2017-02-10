@@ -16,10 +16,9 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
-
 # Let's make a default data frame with catagories and values.
-df = pd.DataFrame({ 'catagories': ['cat1', 'cat2', 'cat3', 'cat4'], 
-                   'values': [84911, 14414, 10062, 8565] })
+df = pd.DataFrame({'catagories': ['cat1', 'cat2', 'cat3', 'cat4'],
+                   'values': [84911, 14414, 10062, 8565]})
 # Now, we define a desired height and width.
 waffle_plot_width = 20
 waffle_plot_height = 7
@@ -29,65 +28,63 @@ values = df['values']
 
 
 def waffle_plot(classes, values, height, width, colormap):
+    # Compute the portion of the total assigned to each class.
+    class_portion = [float(v) / sum(values) for v in values]
 
-   # Compute the portion of the total assigned to each class.
-   class_portion = [float(v)/sum(values) for v in values]
+    # Compute the number of tiles for each catagories.
+    total_tiles = width * height
+    tiles_per_class = [round(p * total_tiles) for p in class_portion]
 
-   # Compute the number of tiles for each catagories.
-   total_tiles = width * height
-   tiles_per_class = [round(p*total_tiles) for p in class_portion]
+    # Make a dummy matrix for use in plotting.
+    plot_matrix = np.zeros((height, width))
 
-   # Make a dummy matrix for use in plotting.
-   plot_matrix = np.zeros((height, width))
+    # Popoulate the dummy matrix with integer values.
+    class_index = 0
+    tile_index = 0
 
-   # Popoulate the dummy matrix with integer values.
-   class_index = 0
-   tile_index = 0
+    # Iterate over each tile.
+    for col in range(waffle_plot_width):
+        for row in range(height):
+            tile_index += 1
 
-   # Iterate over each tile.
-   for col in range(waffle_plot_width):
-       for row in range(height):
-           tile_index += 1
+            # If the number of tiles populated is sufficient for this class...
+            if tile_index > sum(tiles_per_class[0:class_index]):
+                # ...increment to the next class.
+                class_index += 1
 
-           # If the number of tiles populated is sufficient for this class...
-           if tile_index > sum(tiles_per_class[0:class_index]):
+                # Set the class value to an integer, which increases with class.
+            plot_matrix[row, col] = class_index
 
-               # ...increment to the next class.
-               class_index += 1       
+    # Create a new figure.
+    fig = plt.figure()
 
-           # Set the class value to an integer, which increases with class.
-           plot_matrix[row, col] = class_index
+    # Using matshow solves your "non-square" problem.
+    plt.matshow(plot_matrix, cmap=colormap)
+    plt.colorbar()
 
-   # Create a new figure.
-   fig = plt.figure()
+    # Get the axis.
+    ax = plt.gca()
 
-   # Using matshow solves your "non-square" problem. 
-   plt.matshow(plot_matrix, cmap=colormap)
-   plt.colorbar()
+    # Minor ticks
+    ax.set_xticks(np.arange(-.5, (width), 1), minor=True);
+    ax.set_yticks(np.arange(-.5, (height), 1), minor=True);
 
-   # Get the axis.
-   ax = plt.gca()
+    # Gridlines based on minor ticks
+    ax.grid(which='minor', color='w', linestyle='-', linewidth=2)
 
-   # Minor ticks
-   ax.set_xticks(np.arange(-.5, (width), 1), minor=True);
-   ax.set_yticks(np.arange(-.5, (height), 1), minor=True);
+    # Manually constructing a legend solves your "catagorical" problem.
+    legend_handles = []
+    for i, c in enumerate(classes):
+        lable_str = c + " (" + str(values[i]) + ")"
+        color_val = colormap(float(i + 1) / len(classes))
+        legend_handles.append(mpatches.Patch(color=color_val, label=lable_str))
 
-   # Gridlines based on minor ticks
-   ax.grid(which='minor', color='w', linestyle='-', linewidth=2)
+    # Add the legend. Still a bit of work to do here, to perfect centering.
+    plt.legend(handles=legend_handles, loc=1, ncol=len(classes),
+               bbox_to_anchor=(0.08, -0.15, 0.95, .10))
 
-   # Manually constructing a legend solves your "catagorical" problem.
-   legend_handles = []
-   for i, c in enumerate(classes):
-       lable_str = c + " (" + str(values[i]) + ")"
-       color_val = colormap(float(i+1)/len(classes))
-       legend_handles.append(mpatches.Patch(color=color_val, label=lable_str))
-
-   # Add the legend. Still a bit of work to do here, to perfect centering.
-   plt.legend(handles=legend_handles, loc=1, ncol=len(classes),
-              bbox_to_anchor=(0.08, -0.15, 0.95, .10))
-
-   plt.xticks([])
-   plt.yticks([])
+    plt.xticks([])
+    plt.yticks([])
 
 
 # Call the plotting function.

@@ -8,7 +8,6 @@ import numpy as np
 import numpy.random
 import matplotlib.pyplot as plt
 
-
 x = np.random.randn(8000)
 y = np.random.randn(8000)
 

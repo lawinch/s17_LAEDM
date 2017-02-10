@@ -8,10 +8,10 @@ import matplotlib.pyplot as plt
 
 
 def plot_pie(values, labels, colors):
-  plt.pie(values, labels=labels, colors=colors,
-          autopct='%1.1f%%')
-  plt.axis('equal')
-  plt.show()
+    plt.pie(values, labels=labels, colors=colors,
+            autopct='%1.1f%%')
+    plt.axis('equal')
+    plt.show()
 
 
 label_list = ['Qiwi', 'Yandex money', 'PayPal']

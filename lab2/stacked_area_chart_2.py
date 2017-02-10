@@ -8,14 +8,16 @@ Author:         Fattakhova Yulduz
 
 import matplotlib.pyplot as plt
 
+
 def fnx():
-   return np.random.randint(5, 50, 10)
+    return np.random.randint(5, 50, 10)
+
 
 y_ = np.row_stack((fnx(), fnx(), fnx()))
-x_ =  np.arange(10)
+x_ = np.arange(10)
 
 
-def plot_stacked_area_chart(x_,y_):
-   fig, ax = plt.subplots()
-   ax.stackplot(x_, y_)
-   plt.show()
+def plot_stacked_area_chart(x_, y_):
+    fig, ax = plt.subplots()
+    ax.stackplot(x_, y_)
+    plt.show()

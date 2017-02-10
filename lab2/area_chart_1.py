@@ -8,10 +8,12 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def area_chart(data=None):
-  if data is None:
-      data = pd.DataFrame(np.random.rand(10, 1), columns=['item1'])
-  data.plot.area()
-  plt.show()
+    if data is None:
+        data = pd.DataFrame(np.random.rand(10, 1), columns=['item1'])
+    data.plot.area()
+    plt.show()
+
 
 area_chart()

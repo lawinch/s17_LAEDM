@@ -8,6 +8,8 @@ Author:         Fattakhova Yulduz
 """
 
 import matplotlib.pyplot as plt
-def plot_scatter(x_,y_,colors,size):
-   for i in range(size):
-       plt.scatter(x_[i], y_[i], color = colors[i])
+
+
+def plot_scatter(x_, y_, colors, size):
+    for i in range(size):
+        plt.scatter(x_[i], y_[i], color=colors[i])

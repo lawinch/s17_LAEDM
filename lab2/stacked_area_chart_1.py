@@ -11,7 +11,9 @@ import matplotlib.pyplot as plt
 
 
 def fnx():
-return np.random.randint(5, 50, 10)
+
+
+    return np.random.randint(5, 50, 10)
 
 y = np.row_stack((fnx(), fnx(), fnx()))
 x = np.arange(10)

@@ -11,15 +11,17 @@ import matplotlib.pyplot as plt
 
 
 def fnx():
-   return np.random.randint(5, 50, 10)
+    return np.random.randint(5, 50, 10)
+
 
 y = np.row_stack((fnx(), fnx(), fnx()))
 x = np.arange(10)
 
-def two_area_charts(x, y):
-   fig, ax = plt.subplots()
-   ax.stackplot(x, y)
-   plt.show()
 
-   
+def two_area_charts(x, y):
+    fig, ax = plt.subplots()
+    ax.stackplot(x, y)
+    plt.show()
+
+
 two_area_charts(x, y)

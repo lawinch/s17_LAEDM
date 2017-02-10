@@ -9,10 +9,11 @@ import matplotlib.pyplot as plt
 
 
 def plot_stacked_area(x, y):
-   plt.stackplot(x, y)
-   return plt
+    plt.stackplot(x, y)
+    return plt
 
-#data
+
+# data
 n = 10
 max_value = 1000
 y_count = 5
