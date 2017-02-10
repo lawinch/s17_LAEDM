@@ -1,3 +1,5 @@
+# See http://www.nltk.org/book/ch06.html
+
 import nltk
 import pandas as pd
 from nltk.tokenize import RegexpTokenizer
