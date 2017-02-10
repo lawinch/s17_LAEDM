@@ -4,6 +4,8 @@ Data Variables: 3 quantitative
 Author:         Timur Kasatkin
 """
 
+import matplotlib.pyplot as plt
+
 def scatter_plot(x,y,r,xlabel=None,ylabel=None):
   ax = plt.scatter(x,y,r)
   if xlabel:
