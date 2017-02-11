@@ -6,8 +6,7 @@ enrollment = pd.read_csv('course-enrollment.csv')
 grouped = enrollment.groupby('user_id')['course_id'].agg({'course_id': lambda x: x.tolist()}).reset_index()[-40000:]
 
 events = grouped.course_id.values.tolist()
-print(events[:6])
-exit(0)
+
 relim_input = itemmining.get_relim_input(events)
 report = itemmining.relim(relim_input, min_support=2)
 
