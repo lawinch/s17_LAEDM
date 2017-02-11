@@ -3,7 +3,9 @@ import pandas as pd
 from pymining import itemmining, assocrules, seqmining
 
 enrollment = pd.read_csv('course-enrollment.csv')
-grouped = enrollment.groupby('user_id')['course_id'].agg({'course_id': lambda x: x.tolist()}).reset_index()[-40000:]
+grouped = (enrollment.groupby('user_id')['course_id']
+           .agg({'course_id': lambda x: x.tolist()})
+           .reset_index()[-40000:])
 
 events = grouped.course_id.values.tolist()
 
