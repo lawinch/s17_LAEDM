@@ -11,4 +11,4 @@ if not args.filename:
     exit(1)
 
 # process data here
-print(args.data)
+print(args.filename)
